@@ -1,0 +1,56 @@
+{
+  "parser-directories": [
+
+    "/home/simon/.config/tree-sitter/themes"
+
+  ],
+  "theme": {
+    "operator": {
+      "color": 239,
+      "bold": true
+    },
+    "punctuation.delimiter": 239,
+    "constructor": 136,
+    "tag": 18,
+    "keyword": 56,
+    "function": 26,
+    "attribute": {
+      "italic": true,
+      "color": 124
+    },
+    "number": {
+      "color": 94,
+      "bold": true
+    },
+    "property": 124,
+    "comment": {
+      "color": 245,
+      "italic": true
+    },
+    "string": 28,
+    "type.builtin": {
+      "color": 23,
+      "bold": true
+    },
+    "variable.parameter": {
+      "underline": true
+    },
+    "constant": 94,
+    "variable.builtin": {
+      "bold": true
+    },
+    "constant.builtin": {
+      "color": 94,
+      "bold": true
+    },
+    "function.builtin": {
+      "bold": true,
+      "color": 26
+    },
+    "module": 136,
+    "string.special": 30,
+    "punctuation.bracket": 239,
+    "embedded": null,
+    "type": 23
+  }
+}

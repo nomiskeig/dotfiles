@@ -1,0 +1,15 @@
+[Default Applications]
+application/pdf=okular.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-IUVBL1.desktop
+message/rfc822=userapp-Thunderbird-IUVBL1.desktop
+x-scheme-handler/mid=userapp-Thunderbird-IUVBL1.desktop
+x-scheme-handler/webcal=userapp-Thunderbird-LZA9K1.desktop
+text/calendar=userapp-Thunderbird-LZA9K1.desktop
+application/x-extension-ics=userapp-Thunderbird-LZA9K1.desktop
+x-scheme-handler/webcals=userapp-Thunderbird-LZA9K1.desktop
+
+[Added Associations]
+x-scheme-handler/mailto=userapp-Thunderbird-IUVBL1.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-IUVBL1.desktop;
+x-scheme-handler/webcal=userapp-Thunderbird-LZA9K1.desktop;
+x-scheme-handler/webcals=userapp-Thunderbird-LZA9K1.desktop;
