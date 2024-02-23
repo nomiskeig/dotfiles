@@ -273,7 +273,7 @@ awful.keygrabber({
             { "Mod1", "Shift" },
             "Tab",
             function()
-                awful.client.focus.byidx( -1)
+                awful.client.focus.byidx(-1)
             end,
         },
     },
@@ -328,7 +328,7 @@ local tasklist_buttons = gears.table.join(
         awful.client.focus.byidx(1)
     end),
     awful.button({}, 5, function()
-        awful.client.focus.byidx( -1)
+        awful.client.focus.byidx(-1)
     end)
 )
 
@@ -364,13 +364,13 @@ awful.screen.connect_for_each_screen(function(s)
             awful.layout.inc(1)
         end),
         awful.button({}, 3, function()
-            awful.layout.inc( -1)
+            awful.layout.inc(-1)
         end),
         awful.button({}, 4, function()
             awful.layout.inc(1)
         end),
         awful.button({}, 5, function()
-            awful.layout.inc( -1)
+            awful.layout.inc(-1)
         end)
     ))
     -- Create a taglist widget
@@ -446,7 +446,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
-        { -- Right widgets
+        {             -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             spotifyWidget,
@@ -485,7 +485,7 @@ globalkeys = gears.table.join(
         awful.client.focus.byidx(1)
     end, { description = "focus next by index", group = "client" }),
     awful.key({ modkey }, "k", function()
-        awful.client.focus.byidx( -1)
+        awful.client.focus.byidx(-1)
     end, { description = "focus previous by index", group = "client" }),
     awful.key({ modkey }, "w", function()
         mymainmenu:show()
@@ -496,13 +496,13 @@ globalkeys = gears.table.join(
         awful.client.swap.byidx(1)
     end, { description = "swap with next client by index", group = "client" }),
     awful.key({ modkey, "Shift" }, "k", function()
-        awful.client.swap.byidx( -1)
+        awful.client.swap.byidx(-1)
     end, { description = "swap with previous client by index", group = "client" }),
     awful.key({ modkey, "Control" }, "k", function()
         awful.screen.focus_relative(1)
     end, { description = "focus the next screen", group = "screen" }),
     awful.key({ modkey, "Control" }, "j", function()
-        awful.screen.focus_relative( -1)
+        awful.screen.focus_relative(-1)
     end, { description = "focus the previous screen", group = "screen" }),
     awful.key({ modkey }, "u", awful.client.urgent.jumpto, { description = "jump to urgent client", group = "client" }),
     --  awful.key({ modkey }, "Tab", function()
@@ -582,25 +582,25 @@ globalkeys = gears.table.join(
         awful.tag.incmwfact(0.05)
     end, { description = "increase master width factor", group = "layout" }),
     awful.key({ modkey }, "h", function()
-        awful.tag.incmwfact( -0.05)
+        awful.tag.incmwfact(-0.05)
     end, { description = "decrease master width factor", group = "layout" }),
     awful.key({ modkey, "Shift" }, "h", function()
         awful.tag.incnmaster(1, nil, true)
     end, { description = "increase the number of master clients", group = "layout" }),
     awful.key({ modkey, "Shift" }, "l", function()
-        awful.tag.incnmaster( -1, nil, true)
+        awful.tag.incnmaster(-1, nil, true)
     end, { description = "decrease the number of master clients", group = "layout" }),
     awful.key({ modkey, "Control" }, "h", function()
         awful.tag.incncol(1, nil, true)
     end, { description = "increase the number of columns", group = "layout" }),
     awful.key({ modkey, "Control" }, "l", function()
-        awful.tag.incncol( -1, nil, true)
+        awful.tag.incncol(-1, nil, true)
     end, { description = "decrease the number of columns", group = "layout" }),
     awful.key({ modkey }, "space", function()
         awful.layout.inc(1)
     end, { description = "select next", group = "layout" }),
     awful.key({ modkey, "Shift" }, "space", function()
-        awful.layout.inc( -1)
+        awful.layout.inc(-1)
     end, { description = "select previous", group = "layout" }),
 
     awful.key({ modkey, "Control" }, "n", function()
@@ -739,7 +739,7 @@ awful.rules.rules = {
     -- All clients will match this rule.
     {
         rule = {},
-        except = {name = "Chipin"},
+        except = { name = "Chipin" },
         properties = {
             border_width = beautiful.border_width,
             border_color = beautiful.border_normal,
@@ -756,7 +756,7 @@ awful.rules.rules = {
     {
         rule_any = {
             instance = {
-                "DTA", -- Firefox addon DownThemAll.
+                "DTA",   -- Firefox addon DownThemAll.
                 "copyq", -- Includes session name in class.
                 "pinentry",
             },
@@ -765,7 +765,7 @@ awful.rules.rules = {
                 "Blueman-manager",
                 "Gpick",
                 "Kruler",
-                "MessageWin", -- kalarm.
+                "MessageWin",  -- kalarm.
                 "Sxiv",
                 "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                 "Wpa_gui",
@@ -779,9 +779,9 @@ awful.rules.rules = {
                 "Event Tester", -- xev.
             },
             role = {
-                "AlarmWindow", -- Thunderbird's calendar.
+                "AlarmWindow",   -- Thunderbird's calendar.
                 "ConfigManager", -- Thunderbird's about:config.
-                "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+                "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
             },
         },
         properties = { floating = true },
@@ -794,9 +794,10 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
-    { rule = {
-        name = "Chipin"
-    },
+    {
+        rule = {
+            name = "Chipin"
+        },
         {
             properties = { screen = 2 }
         }
@@ -838,7 +839,7 @@ client.connect_signal("request::titlebars", function(c)
             buttons = buttons,
             layout = wibox.layout.fixed.horizontal,
         },
-        { -- Middle
+        {     -- Middle
             { -- Title
                 align = "center",
                 widget = awful.titlebar.widget.titlewidget(c),
