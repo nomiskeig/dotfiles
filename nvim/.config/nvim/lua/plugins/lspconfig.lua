@@ -3,6 +3,21 @@ return {
     config = function()
         local lspconfig = require("lspconfig")
         lspconfig.lua_ls.setup {}
+        --[[lspconfig.rust_analyzer.setup {
+            settings = {
+                ['rust-analyzer'] = {
+                    diagnostics = {
+                        enable = true
+                    },
+                    check = {
+                        command = "clippy"
+                    }
+                }
+
+            }
+        }
+        ]]--
+
     end
 
 

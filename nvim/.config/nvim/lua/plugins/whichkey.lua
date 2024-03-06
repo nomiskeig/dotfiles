@@ -185,14 +185,14 @@ return {
             },
 
             t = {
-                name = "Terminal",
-                n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-                u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-                t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
-                p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-                f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-                h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-                v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
+                name = "Tests",
+                m = { function() require("neotest").run.run({strategy = 'dap'}) end, "Test nearest method with DAP"},
+                n = { function() require("neotest").run.run() end, "Test nearest method"},
+                s = { function() require("neotest").run.stop() end, "Stop test"},
+                r = { function() require("neotest").run.run_last({strategy = 'dap'}) end, "Rerun last test"},
+                l = { function() require("neotest").output_panel.toggle()end, "Toggle test output panel"},
+                f = {function() require("neotest").run.run(vim.fn.expand("%")) end, "Test all tests in file"},
+                o = {function() require('neotest').summary.toggle() end, "Toggle test summary"}
             },
             -- :help dap-api and https://github.com/mfussenegger/nvim-dap
             d = {

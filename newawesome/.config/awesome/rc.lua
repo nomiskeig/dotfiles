@@ -16,6 +16,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local keyboard = require("awful.keyboard")
+local topbar = require("widgets.topBar.topBar")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -51,11 +52,11 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
-editor = os.getenv("EDITOR") or "nano"
+terminal = "alacritty"
+editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -65,26 +66,28 @@ editor_cmd = terminal .. " -e " .. editor
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 
--- Table of layouts to cover with awful.layout.inc, order matters.
-awful.layout.layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
-}
--- }}}
+-- Set available layouts
+awful.layout.remove_default_layout(awful.layout.suit.floating)
+awful.layout.remove_default_layout(awful.layout.suit.tile)
+awful.layout.remove_default_layout(awful.layout.suit.tile.left)
+awful.layout.remove_default_layout(awful.layout.suit.tile.bottom)
+awful.layout.remove_default_layout(awful.layout.suit.tile.top)
+awful.layout.remove_default_layout(awful.layout.suit.fair)
+awful.layout.remove_default_layout(awful.layout.suit.fair.horizontal)
+awful.layout.remove_default_layout(awful.layout.suit.spiral)
+awful.layout.remove_default_layout(awful.layout.suit.spiral.dwindle)
+awful.layout.remove_default_layout(awful.layout.suit.max)
+awful.layout.remove_default_layout(awful.layout.suit.max.fullscreen)
+awful.layout.remove_default_layout(awful.layout.suit.magnifier)
+awful.layout.remove_default_layout(awful.layout.suit.corner.nw)
+awful.layout.remove_default_layout(awful.layout.suit.corner.ne)
+awful.layout.remove_default_layout(awful.layout.suit.corner.sw)
+awful.layout.remove_default_layout(awful.layout.suit.corner.se)
+
+awful.layout.append_default_layout(awful.layout.suit.tile)
+awful.layout.append_default_layout(awful.layout.suit.floating)
+
+
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
@@ -176,6 +179,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
+    topbar.createTopBar(s)
 
     -- Each screen has its own tag table.
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
@@ -205,26 +209,25 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
-
+    -- s.mywibox = awful.wibar({ position = "top", screen = s })
     -- Add widgets to the wibox
-    s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-            layout = wibox.layout.fixed.horizontal,
-            mylauncher,
-            s.mytaglist,
-            s.mypromptbox,
-        },
-        s.mytasklist, -- Middle widget
-        {             -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
-            wibox.widget.systray(),
-            mytextclock,
-            s.mylayoutbox,
-        },
-    }
+    ----s.mywibox:setup {
+    --   layout = wibox.layout.align.horizontal,
+    --   { -- Left widgets
+    --       layout = wibox.layout.fixed.horizontal,
+    --       mylauncher,
+    --       s.mytaglist,
+    --       s.mypromptbox,
+    --   },
+    --   s.mytasklist, -- Middle widget
+    --   {             -- Right widgets
+    --       layout = wibox.layout.fixed.horizontal,
+    --       mykeyboardlayout,
+    --       wibox.widget.systray(),
+    --       mytextclock,
+    --       s.mylayoutbox,
+    --   },
+    --}--
 end)
 -- }}}
 
@@ -238,6 +241,15 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 awful.keyboard.append_global_keybindings({
+    -- Meida contronl
+
+    awful.key({}, "XF86AudioRaiseVolume", function()
+        awful.spawn("amixer set Master 2%+")
+    end, { description = "Raise volume", group = "media" }),
+    awful.key({}, "XF86AudioLowerVolume", function()
+        awful.spawn("amixer set Master 2%-")
+    end, { description = "Lower volumne", group = "media" }),
+
     awful.key({ modkey, }, "s", hotkeys_popup.show_help,
         { description = "show help", group = "awesome" }),
     awful.key({ modkey, }, "Left", awful.tag.viewprev,
@@ -287,6 +299,10 @@ awful.keyboard.append_global_keybindings({
         { description = "open a termin.al", group = "launcher" }),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
         { description = "reload awesome", group = "awesome" }),
+
+    awful.key({ any }, "Print", function()
+        awful.spawn("spectacle")
+    end, { description = "Take a screenshot", group = "launcher" }),
     awful.key({ modkey, "Shift" }, "q", awesome.quit,
         { description = "quit awesome", group = "awesome" }),
     awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
@@ -319,7 +335,7 @@ awful.keyboard.append_global_keybindings({
         { description = "restore minimized", group = "client" }),
 
     -- Prompt
-    awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey }, "r", function() awful.screen.focused().promptbox:run() end,
         { description = "run prompt", group = "launcher" }),
 
     awful.key({ modkey }, "x",
@@ -586,3 +602,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Dashboard component
 local dashboard = require("widgets.dashboard")();
+require("rules")

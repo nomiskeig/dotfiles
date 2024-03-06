@@ -8,9 +8,7 @@ local json = require("json")
 local gears = require("gears")
 local async = require("async_http")
 
-local fontSize = 20
-local font = beautiful.get().font
-font = font:sub(1, -2) .. fontSize
+local font = beautiful.dashboard_font
 
 local taskWidget = wibox.widget {
     widget = wibox.widget.textbox,

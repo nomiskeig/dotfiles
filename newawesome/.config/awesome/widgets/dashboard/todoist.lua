@@ -6,7 +6,6 @@ local json = require("json")
 local gears = require("gears")
 local tokens = require("tokens")
 local ltn12 = require("ltn12")
-local theme = require("themes.default.theme")
 local async = require("async_http")
 
 
@@ -18,8 +17,8 @@ local defaultHeaders = {
 }
 local fontSize = 20
 
-local font = beautiful.get().font
-font = font:sub(1, -2) .. fontSize
+local font = beautiful.font_dashboard
+
 
 
 
@@ -206,7 +205,7 @@ local todoist = wibox.widget {
         },
         widget = wibox.container.margin
     },
-    bg = theme.bg2,
+    --bg = theme.bg2,
     widget = wibox.container.background
 }
 

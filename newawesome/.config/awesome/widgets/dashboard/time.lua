@@ -3,10 +3,8 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local amountScreens = screen.count()
 
-local fontSize = 30
 
-local font = beautiful.get().font
-font = font:sub(1, -2) .. fontSize
+local font = beautiful.dashboard_font_no_size .. " 30"
 
 local time = wibox.widget.textclock()
 time.font = font

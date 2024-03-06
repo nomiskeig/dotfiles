@@ -1,12 +1,12 @@
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local awful = require("awful")
-local theme = require("themes.default.theme")
 local dpi = require("beautiful.xresources").apply_dpi
 
 local time = require("widgets.dashboard.time")
 local todoist = require("widgets.dashboard.todoist")
 local clockify = require("widgets.dashboard.clockify")
+local currentlyPlaying = require("widgets.dashboard.currentlyPlaying")
 local async_http = require("async_http")
 local function dashboard()
     local dashboard = wibox({
@@ -17,7 +17,7 @@ local function dashboard()
         y = 0,
         width = awful.screen.focused().geometry.width,
         height = awful.screen.focused().geometry.height,
-        bg = theme.bg0,
+        --bg = theme.bg0,
         screen = awful.screen.focused {},
 
 
@@ -73,7 +73,7 @@ local function dashboard()
     l:add_widget_at(time, 1, 7, 3, 8)
     l:add_widget_at(todoist, 4, 2, 13, 10)
     l:add_widget_at(clockify, 18, 2, 2, 10)
-    --l:add_widget_at(time, 1, 3, 3, 3)
+    l:add_widget_at(currentlyPlaying, 4, 15, 10, 10)
     --l:add_widget_at(time, 1, 4, 1, 1)
     --l:add_widget_at(time, 1, 5, 1, 1)
     --l:add_widget_at(time, 2, 1, 1, 1)
