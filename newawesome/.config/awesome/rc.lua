@@ -301,7 +301,7 @@ awful.keyboard.append_global_keybindings({
         { description = "reload awesome", group = "awesome" }),
 
     awful.key({ any }, "Print", function()
-        awful.spawn("spectacle")
+        awful.spawn("flameshot gui")
     end, { description = "Take a screenshot", group = "launcher" }),
     awful.key({ modkey, "Shift" }, "q", awesome.quit,
         { description = "quit awesome", group = "awesome" }),
@@ -603,3 +603,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Dashboard component
 local dashboard = require("widgets.dashboard")();
 require("rules")
+awful.spawn.with_shell("~/.config/awesome/autorun.sh");

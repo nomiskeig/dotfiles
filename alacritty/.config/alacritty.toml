@@ -1,0 +1,10 @@
+[font]
+[font.normal]
+family = "FiraMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "FiraMono Nerd Font"
+
+[font.italic]
+family = "FiraMono Nerd Font"

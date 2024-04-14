@@ -22,7 +22,7 @@ return {
             Module = "",
             Property = "",
             Unit = "",
-            Value = "",
+            Value = "V",
             Enum = "",
             Keyword = "",
             Snippet = "",
@@ -42,6 +42,7 @@ return {
         cmp.setup {
             snippet = {
                 expand = function(args)
+                    local luasnip = require("luasnip")
                     luasnip.lsp_expand(args.body) -- For `luasnip` users.
                 end,
             },
