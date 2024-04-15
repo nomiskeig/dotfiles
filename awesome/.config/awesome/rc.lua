@@ -18,6 +18,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+local battery_widget = require("battery-widget")
 
 gears.debug.dump("screens: ")
 for i = 1, screen:count(), 1 do
@@ -427,7 +428,7 @@ awful.screen.connect_for_each_screen(function(s)
                 right = 5,
                 widget = wibox.container.margin,
                 --shape = utils.shape.parallelogram.left,
-            },
+           },
             id = "background_role",
             widget = wibox.container.background,
             --shape = utils.shape.parallelogram.left,
@@ -449,6 +450,7 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
+            battery_widget {},
             spotifyWidget,
             wibox.widget.systray(),
             --mytextclock,
@@ -578,6 +580,10 @@ globalkeys = gears.table.join(
     awful.key({ any }, "XF86AudioLowerVolume", function()
         awful.spawn("amixer set Master 2%-")
     end, { description = "Lower volume", group = "media" }),
+    awful.key({ any }, "XF86MonBrightnessUp", function()
+        awful.spawn("brillo -A 5") end, { description = "Increase screen brightness", group = "device"}),
+    awful.key({ any }, "XF86MonBrightnessDown", function()
+        awful.spawn("brillo -U 5") end, { description = "Decrease screen brightness", group = "device"}),
     awful.key({ modkey }, "l", function()
         awful.tag.incmwfact(0.05)
     end, { description = "increase master width factor", group = "layout" }),
