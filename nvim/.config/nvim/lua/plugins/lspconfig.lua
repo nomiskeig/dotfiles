@@ -2,6 +2,7 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
         local lspconfig = require("lspconfig")
+        lspconfig.jdtls.setup({})
         lspconfig.lua_ls.setup {}
         lspconfig.texlab.setup {}
         --[[lspconfig.rust_analyzer.setup {
