@@ -5,6 +5,8 @@ return {
         lspconfig.jdtls.setup({})
         lspconfig.lua_ls.setup {}
         lspconfig.texlab.setup {}
+        lspconfig.clangd.setup {}
+        lspconfig.mesonlsp.setup{}
         --[[lspconfig.rust_analyzer.setup {
             settings = {
                 ['rust-analyzer'] = {

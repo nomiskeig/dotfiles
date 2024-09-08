@@ -105,3 +105,4 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 alias spotify="spotify-launcher"
 alias lsa="ls -all"
 
+path+=(./node_modules/.bin)

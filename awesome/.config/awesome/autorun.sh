@@ -12,3 +12,4 @@ run brillo -k -s "platform::micmute" -rc -S 0
 run brillo -k -s "platform::micmute" -r -S 0
 run brillo -k -s "tpacpi::kbd_backlight" -rc -S 0 
 run brillo -k -s "tpacpi::kbd_backlight" -c -S 0 
+run nm-applet
