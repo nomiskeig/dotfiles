@@ -7,6 +7,7 @@ return {
         lspconfig.texlab.setup {}
         lspconfig.clangd.setup {}
         lspconfig.mesonlsp.setup{}
+        lspconfig.ts_ls.setup{}
         --[[lspconfig.rust_analyzer.setup {
             settings = {
                 ['rust-analyzer'] = {
