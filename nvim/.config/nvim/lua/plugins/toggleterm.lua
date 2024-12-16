@@ -4,7 +4,7 @@ return {
         local toggleterm = require("toggleterm");
         toggleterm.setup({
             size = 20,
-            open_mapping = [[<c-\>]],
+            open_mapping = [[<c-a>]],
             hide_numbers = true,
             shade_filetypes = {},
             shade_terminals = true,
@@ -32,7 +32,7 @@ return {
             lazygit:toggle()
         end
 
-        vim.api.nvim_set_keymap("n", "<c-/>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+        vim.api.nvim_set_keymap("n", "<c-s>", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
     end,
 
 }

@@ -7,7 +7,9 @@ return {
             'rust-analyzer',
             'texlab',
             'clangd',
-            'mesonlsp'
+            'mesonlsp',
+			'basedpyright'
+
 
         }
     }
